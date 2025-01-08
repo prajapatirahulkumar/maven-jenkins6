@@ -6,3 +6,5 @@ new code complete to work
 check build now deploy.
 check deploy to deploy.
 check it script pipeline.
+
+code is complete and automatic deploy.
