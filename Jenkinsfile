@@ -1,22 +1,28 @@
 pipeline {
     agent any
+    tools {
+        maven 'maven3'
+        jdk 'java17'
+    }
     stages {
-        stage('git-code-download') {
+        stage('download code from git') {
             steps {
-                echo "gownload code from git"
                 git branch: 'main', url: 'https://github.com/prajapatirahulkumar/maven-jenkins6.git'
-
             }
         }
-        stage('creare-docker-images') {
+        stage('make to build code') {
             steps {
-                sh '''
-                docker build -t prajapatirahul/mavawebapp:${BUILD_NUMBER} .
-                docker tag -t prajapatirahul/mavawebapp:${BUILD_NUMBER} prajapatirahul/mavawebapp:latest
-                docker push prajapatirahul/mavawebapp:${BUILD_NUMBER}
-                docker push prajapatirahul/mavawebapp:latest
-                '''
-                
+                sh 'mvn clean package'
+            }
+        }
+        stage('archive to artifact') {
+            steps {
+                archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+            }
+        }
+        stage('trigger to build job') {
+            steps {
+                build wait: false, job: 'deploy-pipeline'
             }
         }
     }
