@@ -6,7 +6,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/prajapatirahulkumar/maven-jenkins6.git'
             }
         }
-        stage('sh') {
+        stage('build') {
             steps {
                 sh '''
                 docker build -t prajapatirahul/javawebapp: ${BUILD_NUMBER} .
