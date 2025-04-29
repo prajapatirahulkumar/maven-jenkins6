@@ -15,7 +15,7 @@ WORKDIR /usr/local/tomcat/webapps
 # Copy the built WAR file from the Maven builder stage to the Tomcat webapps directory
 COPY --from=builder /app/webapp/target/*.war .
 
-EXPOSE 8081
+EXPOSE 8080
 
 # Command to run Tomcat
 CMD ["catalina.sh", "run"]
