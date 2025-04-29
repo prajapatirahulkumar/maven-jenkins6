@@ -1,21 +1,21 @@
 pipeline {
     agent any
     stages {
-        stage('git-code-download') {
+        stage('download from git code') {
             steps {
-                echo "Download code from Git"
-                git branch: 'main', url: 'https://github.com/devopstechlab/maven-jenkins6.git'
+                git branch: 'main', url: 'https://github.com/prajapatirahulkumar/maven-jenkins6.git'
             }
         }
-        stage('create-docker-image') {
+        stage('mvn clean package') {
             steps {
                 sh '''
-                docker build -t devopstechlab/mytomcat:${BUILD_NUMBER} .
-                docker tag devopstechlab/mytomcat:${BUILD_NUMBER} devopstechlab/mytomcat:latest
-                docker push devopstechlab/mytomcat:${BUILD_NUMBER}
-                docker push devopstechlab/mytomcat:latest
+                docker build -t prajapatirahul/javawebapp: ${BUILD_NUMBER} .
+                dcoker tag prajapatirahul/javawebapp:v1 ${BUILD_NUMBER} prajapatirahul/javawebapp:latest 
+                docker push prajapatirahul/javawebapp:${BUILD_NUMBER}
+                docker push prajapatirahul/javawebapp:latest
                 '''
             }
         }
+        
     }
 }
