@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh '''
                 docker build -t prajapatirahul/javawebapp: ${BUILD_NUMBER} .
-                dcoker tag prajapatirahul/javawebapp:v1 ${BUILD_NUMBER} prajapatirahul/javawebapp:latest 
+                docker tag prajapatirahul/javawebapp:v1 ${BUILD_NUMBER} prajapatirahul/javawebapp:latest 
                 docker push prajapatirahul/javawebapp:${BUILD_NUMBER}
                 docker push prajapatirahul/javawebapp:latest
                 '''
