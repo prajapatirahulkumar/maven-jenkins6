@@ -11,8 +11,8 @@ pipeline {
                 sh '''
                 docker build -t prajapatirahulkumar/javawebapp:${BUILD_NUMBER} .
                 docker tag prajapatirahulkumar/javawebapp:${BUILD_NUMBER} prajapatirahulkumar/javawebapp:latest 
-                docker push prajapatirahulkumar/javawebapp:${BUILD_NUMBER}
-                docker push prajapatirahulkumar/javawebapp:latest
+                docker push prajapatirahul/javawebapp:${BUILD_NUMBER}
+                docker push prajapatirahul/javawebapp:latest
                 '''
             }
         }
